@@ -5,6 +5,16 @@ const pokemonNameArea = document.getElementById("pokemon-name");
 const spriteArea = document.getElementById("sprite-area");
 let pokeImage;
 
+if ('speechSynthesis' in window) {
+    // Speech Synthesis supported 🎉
+   }else{
+     // Speech Synthesis Not Supported 😣
+     alert("Sorry, your browser doesn't support text to speech!");
+   }
+   var msg = new SpeechSynthesisUtterance();
+   msg.text = "Good Morning";
+   window.speechSynthesis.speak(msg);
+
 async function getInfoOnOnePokemonAndAddInfoToPage(pokemonName) {
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
         .then(response => response.json())
@@ -30,3 +40,6 @@ const pokemonSearchClick = () => {
 }
 
 searchButton.addEventListener('click', pokemonSearchClick);
+
+// searchButton.click();
+// var msg = new SpeechSynthesisUtterance('Test');
